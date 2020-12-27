@@ -5,8 +5,8 @@ LDFLAGS  += -Wl,--gc-sections
 
 THISDIR = $(shell pwd)
 
-all: config_test
-	$(MAKE) -C $(SRC_NAME) && \
+all: download_test extract_test config_test
+	$(MAKE) -j$(HOST_NCPU) -C $(SRC_NAME) && \
 	$(MAKE) -C $(SRC_NAME) install DESTDIR=$(THISDIR)/install
 
 config_test:
