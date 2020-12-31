@@ -191,13 +191,14 @@ sh dl_toolchain.sh
 nano /opt/rt-n56u/trunk/configs/templates/NETGEAR-BZV.config
 ```
 
-* 清理代码树并开始编译
+* 开始编译
 
 ```shell
 cd /opt/rt-n56u/trunk
 ./clear_tree
 fakeroot ./build_firmware_modify NETGEAR-BZV
 # 脚本第一个参数为路由型号, 在trunk/configs/templates/中
+# 对于WSL环境，建议使用sudo进行编译，或者使用fakeroot-tcp代替fakeroot
 # 编译好的固件在trunk/images里
 ```
 
