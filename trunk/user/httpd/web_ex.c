@@ -2650,7 +2650,6 @@ ej_firmware_caps_hook(int eid, webs_t wp, int argc, char **argv)
 #else
 	int has_openssl_ec = 0;
 #endif
-
 #if defined (SUPPORT_DDNS_SSL)
 	int has_ddns_ssl = 1;
 #if defined (USE_RT3352_MII)
@@ -2832,6 +2831,7 @@ ej_firmware_caps_hook(int eid, webs_t wp, int argc, char **argv)
 		has_ipv4_ppe,
 		has_peap_ssl,
 		has_http_ssl,
+		has_openssl_ec,
 		has_ddns_ssl,
 		has_openssl_ec,
 		MIN_EXT_VLAN_VID,

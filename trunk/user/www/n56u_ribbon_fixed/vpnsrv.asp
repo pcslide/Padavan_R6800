@@ -305,8 +305,8 @@ function change_vpns_type(){
 				o.remove(3);
 			}
 			showhide_div('row_vpns_exp', 1);
-		}	
-	
+		}
+		
 		change_vpns_ov_atls();
 	}else{
 		showhide_div('tab_vpns_acl', 1);
@@ -1039,7 +1039,6 @@ function getHash(){
                                             <option value="prime256v1">EC P-256</option>
                                             <option value="secp384r1">EC P-384</option>
                                             <option value="secp521r1">EC P-521</option>
-
                                         </select>
                                     </td>
                                     <td align="left" style="border-top: 0 none; padding-top: 0px;">
@@ -1056,7 +1055,6 @@ function getHash(){
                                         <input id="vpns_exp_cn" type="text" maxlength="32" size="10" style="width: 105px;" placeholder="client@ovpn" onKeyPress="return is_string(this,event);"/>
                                     </td>
                                     <td align="left">
-                                        <span class="caption-bold">RSA bits:</span>
                                         <span class="caption-bold">Bits:</span>
                                         <select id="vpns_exp_rb" class="input" style="width: 108px;">
                                             <option value="1024">RSA 1024 (*)</option>
@@ -1065,7 +1063,7 @@ function getHash(){
                                             <option value="prime256v1">EC P-256</option>
                                             <option value="secp384r1">EC P-384</option>
                                             <option value="secp521r1">EC P-521</option>
-
+                                        </select>
                                     </td>
                                     <td align="left">
                                         <span class="caption-bold">Days valid:</span>
