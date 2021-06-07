@@ -695,7 +695,6 @@ gen_ralink_config(int is_soc_ap, int is_aband, int disable_autoscan)
 	fprintf(fp, "ETxBfNoncompress=%d\n", 0);
 	fprintf(fp, "ETxBfIncapable=%d\n", 0);
 	fprintf(fp, "PcieAspm=%d\n", 0);
-	fprintf(fp, "TWTSupport=%d\n", 0);
 	fprintf(fp, "ThermalRecal=%d\n", 0);
 	fprintf(fp, "WCNTest=%d\n", 0);
 	fprintf(fp, "WHNAT=%d\n", 0);
@@ -717,19 +716,24 @@ gen_ralink_config(int is_soc_ap, int is_aband, int disable_autoscan)
 
 #if defined (USE_WID_2G) && (USE_WID_2G==7615 || USE_WID_2G==7915)
 	if (!is_aband) {
-		fprintf(fp, "PPEnable=%d\n", 0);
 		fprintf(fp, "G_BAND_256QAM=%d\n", nvram_wlan_get_int(0, "turbo_qam"));
 #if defined(BOARD_HAS_2G_11AX) && BOARD_HAS_2G_11AX
 		if (i_phy_mode == PHY_11AX_24G) {
-			/* wifi6 mode */
+			/* 2.4g wifi6 mode */
+			fprintf(fp, "TWTSupport=%d\n", 0);
+			fprintf(fp, "PPEnable=%d\n", 0);
 			fprintf(fp, "MuOfdmaDlEnable=%d\n", 1);
 			fprintf(fp, "MuOfdmaUlEnable=%d\n", 0);
 			fprintf(fp, "SREnable=%d\n", 1);
+			fprintf(fp, "SRMode=%d\n", 0);
 			fprintf(fp, "SRSDEnable=%d\n", 1);
 		} else {
+			fprintf(fp, "TWTSupport=%d\n", 0);
+			fprintf(fp, "PPEnable=%d\n", 0);
 			fprintf(fp, "MuOfdmaDlEnable=%d\n", 0);
 			fprintf(fp, "MuOfdmaUlEnable=%d\n", 0);
 			fprintf(fp, "SREnable=%d\n", 0);
+			fprintf(fp, "SRMode=%d\n", 0);
 			fprintf(fp, "SRSDEnable=%d\n", 0);
 		}
 #endif
@@ -738,7 +742,7 @@ gen_ralink_config(int is_soc_ap, int is_aband, int disable_autoscan)
 
 #if defined (USE_WID_5G) && (USE_WID_5G==7615 || USE_WID_5G==7915)
 	if (is_aband) {
-		fprintf(fp, "PPEnable=%d\n", 1);
+		/* 5g mumimo configs */
 		if (nvram_wlan_get_int(1, "mumimo")) {
 			fprintf(fp, "MUTxRxEnable=%d\n", 1);
 			fprintf(fp, "MuMimoDlEnable=%d\n", 1);
@@ -750,15 +754,21 @@ gen_ralink_config(int is_soc_ap, int is_aband, int disable_autoscan)
 		}
 #if defined(BOARD_HAS_5G_11AX) && BOARD_HAS_5G_11AX
 		if (i_phy_mode == PHY_11AX_5G) {
-			/* wifi6 mode */
+			/* 5g wifi6 mode */
+			fprintf(fp, "TWTSupport=%d\n", 0);
+			fprintf(fp, "PPEnable=%d\n", 1);
 			fprintf(fp, "MuOfdmaDlEnable=%d\n", 1);
 			fprintf(fp, "MuOfdmaUlEnable=%d\n", 0);
 			fprintf(fp, "SREnable=%d\n", 1);
+			fprintf(fp, "SRMode=%d\n", 0);
 			fprintf(fp, "SRSDEnable=%d\n", 1);
 		} else {
+			fprintf(fp, "TWTSupport=%d\n", 0);
+			fprintf(fp, "PPEnable=%d\n", 0);
 			fprintf(fp, "MuOfdmaDlEnable=%d\n", 0);
 			fprintf(fp, "MuOfdmaUlEnable=%d\n", 0);
 			fprintf(fp, "SREnable=%d\n", 0);
+			fprintf(fp, "SRMode=%d\n", 0);
 			fprintf(fp, "SRSDEnable=%d\n", 0);
 		}
 #endif
