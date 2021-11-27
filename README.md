@@ -1,17 +1,25 @@
 ### 固件说明 ###
+This repo is built for specified Netgear hardware:
+* R6260/R6350/R6850(NETGEAR-CHJ)
+* R6700v2/R6800/R6900v2/R7200/R7450/AC2100/AC2400(NETGEAR-BZV)
+* only tested on R6800
+
+Owner of other hardware model is advised to use upsteam repo.
+* Backup eeprom first
+* Use nmrpflash/breed to flash(at your own risk!)
 * 默认登陆IP:192.168.2.1 
 * 默认用户名/密码:admin/admin
 * 默认wifi密码:1234567890
 * 集成/取消新增插件请修改此文件: trunk/build_firmware_modify
 
-- 网件的闪存布局要求factory在ubi/firmware之后, 因此额外加入了NETGEAR_LAYOUT、FACTORY_OFFSET及RWFS_OFFSET选项。
+网件的闪存布局要求factory在ubi/firmware之后, 因此额外加入了NETGEAR_LAYOUT、FACTORY_OFFSET及RWFS_OFFSET选项。
 >- NETGEAR_LAYOUT表明布局为config及factory在firmware之后。
 >- FACTORY_OFFSET直接指定factory的起始位置, 跳过reserved0分区。
 >- RWFS_OFFSET直接指定RWFS的起始位置, 跳过reserved1分区。
 
 目前无法直接创建reserved0与reserved1分区, 否则开机时会提示factory尺寸溢出。
 
-- 已适配除官方适配及chongshengB分支外的网件套娃机型: 
+已适配除官方适配及chongshengB分支外的网件套娃机型: 
 >- R6220, MT7603+MT7612
 >- HWID为CHJ的机型(NETGEAR-CHJ), MT7603+MT7615: R6260/R6350/R6850
 >- HWID为BZV的机型(NETGEAR-BZV), MT7615+MT7615: R6700v2/R6800/R6900v2/R7200/R7450/AC2100/AC2400
@@ -69,7 +77,7 @@ sudo yum install ncurses-* flex byacc bison zlib-* gmp-* mpfr-* gettext \
 * 克隆源码
 
 ```shell
-git clone --depth=1 https://github.com/chongshengB/rt-n56u.git /opt/rt-n56u
+git clone --depth=1 https://github.com/pcslide/Padavan_R6800.git /opt/rt-n56u
 ```
 
 * 准备工具链
@@ -89,7 +97,7 @@ sh dl_toolchain.sh
 * (可选) 修改机型配置文件
 
 ```shell
-nano /opt/rt-n56u/trunk/configs/templates/PSG1218.config
+nano /opt/rt-n56u/trunk/configs/templates/NETGEAR-BZV.config
 ```
 
 * 清理代码树并开始编译
@@ -97,7 +105,7 @@ nano /opt/rt-n56u/trunk/configs/templates/PSG1218.config
 ```shell
 cd /opt/rt-n56u/trunk
 ./clear_tree
-fakeroot ./build_firmware_modify PSG1218
+fakeroot ./build_firmware_modify NETGEAR-BZV
 # 脚本第一个参数为路由型号, 在trunk/configs/templates/中
 # 编译好的固件在trunk/images里
 ```
