@@ -4,7 +4,7 @@ This repo is built for specified Netgear hardware:
 * R6700v2/R6800/R6900v2/R7200/R7450/AC2100/AC2400(NETGEAR-BZV)
 * only tested on R6800
 
-Owner of other hardware model is advised to use upsteam repo.
+Owner of other hardware model is advised to use upstream repo.
 * Backup eeprom first
 * Use nmrpflash/breed to flash(at your own risk!)
 * 默认登陆IP:192.168.2.1 
