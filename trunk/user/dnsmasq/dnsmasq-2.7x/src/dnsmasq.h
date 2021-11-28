@@ -249,7 +249,6 @@ struct event_desc {
 #define OPT_FILTER_AAAA    58
 #define OPT_LAST           59
 
-
 /* extra flags for my_syslog, we use a couple of facilities since they are known 
    not to occupy the same bits as priorities, no matter how syslog.h is set up. */
 #define MS_TFTP   LOG_USER
